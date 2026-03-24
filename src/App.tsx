@@ -7,12 +7,7 @@ import CustomCursor from './components/CustomCursor';
 import { ThemeProvider } from './lib/ThemeContext';
 
 import Home from './pages/Home';
-import CapabilitiesPage from './pages/CapabilitiesPage';
-import JourneyPage from './pages/JourneyPage';
-import StackPage from './pages/StackPage';
-import LaboratoryPage from './pages/LaboratoryPage';
-import LessonsPage from './pages/LessonsPage';
-import CollaboratePage from './pages/CollaboratePage';
+
 
 export default function App() {
   const { scrollYProgress } = useScroll();
@@ -39,13 +34,7 @@ export default function App() {
           {/* Main content wrapper with margin bottom to reveal the sticky footer */}
           <main className="relative z-10 bg-surface mb-[60vh] shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-colors duration-500">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/capabilities" element={<CapabilitiesPage />} />
-              <Route path="/journey" element={<JourneyPage />} />
-              <Route path="/stack" element={<StackPage />} />
-              <Route path="/laboratory" element={<LaboratoryPage />} />
-              <Route path="/lessons" element={<LessonsPage />} />
-              <Route path="/collaborate" element={<CollaboratePage />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </main>
           

@@ -21,14 +21,14 @@ export default function Header() {
           AHSAN.DEV
         </Link>
         <div className="hidden md:flex items-center gap-8">
-          {['Laboratory', 'Lessons', 'Journey', 'Stack', 'Collaborate'].map((item) => (
-            <Link 
+          {['Capabilities', 'Laboratory', 'Lessons', 'Journey', 'Stack', 'Reviews', 'Collaborate'].map((item) => (
+            <a 
               key={item}
-              to={`/${item.toLowerCase()}`}
+              href={`#${item.toLowerCase()}`}
               className="font-headline tracking-tight uppercase text-sm font-bold text-on-surface-variant hover:text-primary transition-colors"
             >
               {item}
-            </Link>
+            </a>
           ))}
         </div>
         <div className="flex items-center gap-4">

@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0f0f23" />
+  <!-- Disable Google Translate -->
+  <meta name="google" content="notranslate">
+  <meta name="googlebot" content="notranslate">
+  <title>Ahsan – Professional Discord Server Developer</title>
+  <link rel="icon" type="image/jpeg" href="icon/Icon.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.15.1/devicon.min.css" />
+  <link rel="stylesheet" href="loading-screen.css" />
+  <!-- Hide Google Translate -->
+  <style>
+    /* Hide Google Translate elements */
+    .goog-te-banner-frame,
+    .goog-te-menu-frame,
+    .skiptranslate,
+    .goog-te-gadget,
+    .goog-te-combo,
+    #google_translate_element,
+    .google-translate-container,
+    .VIpgJd-ZVi9od-ORHb-OEVmcd {
+      display: none !important;
+    }
+  
+    /* Prevent Google Translate from affecting body positioning */
+    body {
+      top: 0 !important;
+    }
+
+    /* Hide translation popup */
+    .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+    }
+  </style>
+  <!-- Howler.js Audio Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+</head>
+
+<body class="notranslate" translate="no">
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="boot-logo-container">
+      <div class="loading-ring"></div>
+      <img src="Images/c-theahsan.webp" alt="Ahsan Logo" class="boot-logo-image">
+    </div>
+    <div class="boot-title">Ahsan</div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" style="display: none">
+    <!-- Desktop Environment -->
+    <div class="desktop">
+      <!-- System Performance Monitor - Top Right Corner -->
+      <div class="system-monitor-widget">
+        <div class="monitor-header">
+          <i class="fas fa-microchip"></i>
+          <span>System Monitor</span>
+          <div class="monitor-controls">
+            <i class="fas fa-minus minimize-monitor" title="Minimize"></i>
+          </div>
+        </div>
+        <div class="monitor-content">
+          <div class="monitor-item">
+            <div class="monitor-info">
+              <div class="monitor-label">CPU</div>
+              <div class="monitor-value" id="cpu-usage">0%</div>
+            </div>
+            <div class="monitor-bar">
+              <div class="monitor-fill cpu-fill" id="cpu-bar"></div>
+            </div>
+          </div>
+          <div class="monitor-item">
+            <div class="monitor-info">
+              <div class="monitor-label">RAM</div>
+              <div class="monitor-value" id="memory-usage">0%</div>
+            </div>
+            <div class="monitor-bar">
+              <div class="monitor-fill memory-fill" id="memory-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Taskbar -->
+      <div class="taskbar">
+        <div class="taskbar-left">
+          <div class="start-menu" data-window="about" onclick="reloadWithLoading()">
+            <i class="fab fa-python"></i>
+            <span class="os-text">The Ahsan</span>
+          </div>
+        </div>
+        <div class="taskbar-center">
+          <div class="window-tabs">
+            <div class="tab" data-window="about">
+              <i class="fab fa-discord"></i>
+              <span>about</span>
+            </div>
+            <div class="tab" data-window="skills">
+              <i class="fas fa-code"></i>
+              <span>skills</span>
+            </div>
+            <div class="tab" data-window="projects">
+              <i class="fas fa-folder-open"></i>
+              <span>projects</span>
+            </div>
+            <div class="tab" data-window="clients">
+              <i class="fas fa-users"></i>
+              <span>clients</span>
+            </div>
+            <div class="tab" data-window="pricing">
+              <i class="fas fa-dollar-sign"></i>
+              <span>pricing</span>
+            </div>
+            <div class="tab" data-window="blog">
+              <i class="fas fa-blog"></i>
+              <span>blog</span>
+            </div>
+            <div class="tab" data-window="contact">
+              <i class="fas fa-envelope"></i>
+              <span>contact</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="taskbar-right">
+          <div class="system-tray">
+            <!-- Desktop Control Buttons -->
+            <div class="control-buttons">
+              <button class="control-btn" id="terminal-btn" title="Terminal" onclick="openTerminal();">
+                <i class="fas fa-terminal"></i>
+              </button>
+              <button class="control-btn" id="theme-btn" title="Toggle Theme" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+              </button>
+              <button class="control-btn" id="wallpaper-btn" title="Change Wallpaper" onclick="openWallpaperModal();">
+                <i class="fas fa-image"></i>
+              </button>
+
+            </div>
+            <div class="system-icons">
+              <button class="system-icon-btn" id="sound-btn" title="Toggle Sound" onclick="toggleSound()">
+                <i class="fas fa-volume-up"></i>
+              </button>
+              <i class="fas fa-wifi" title="Network"></i>
+              <i class="fas fa-battery-full" title="Battery"></i>
+            </div>
+            <span class="time" id="current-time"></span>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-nav-menu" id="mobile-nav-menu">
+              <button class="mobile-nav-btn" data-window="about">
+                <i class="fab fa-discord"></i>
+                <span>About</span>
+              </button>
+              <button class="mobile-nav-btn" data-window="skills">
+                <i class="fas fa-code"></i>
+                <span>Skills</span>
+              </button>
+              <button class="mobile-nav-btn" data-window="projects">
+                <i class="fas fa-folder-open"></i>
+                <span>Projects</span>
+              </button>
+              <button class="mobile-nav-btn" data-window="pricing">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Pricing</span>
+              </button>
+              <button class="mobile-nav-btn" data-window="blog">
+                <i class="fas fa-blog"></i>
+                <span>Blog</span>
+              </button>
+              <button class="mobile-nav-btn" data-window="contact">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+              </button>
+              <button class="mobile-nav-btn" data-window="clients">
+                <i class="fas fa-users"></i>
+                <span>Clients & Reviews</span>
+              </button>
+
+              <div class="mobile-nav-divider"></div>
+
+              <div class="mobile-menu-item" onclick="openTerminal(); closeMobileMenu();">
+                <i class="fas fa-terminal"></i>
+                <span>Terminal</span>
+              </div>
+              <div class="mobile-menu-item" onclick="openWallpaperModal(); closeMobileMenu();">
+                <i class="fas fa-image"></i>
+                <span>Wallpaper</span>
+              </div>
+              <div class="mobile-menu-item" onclick="toggleTheme(); closeMobileMenu();">
+                <i class="fas fa-moon" id="mobile-theme-icon"></i>
+                <span id="mobile-theme-text">Dark Mode</span>
+              </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn green-glass-btn" id="mobile-menu-btn" title="Menu" style="bottom: -4px;">
+              <i class="fas fa-bars menu-icon"></i>
+              <i class="fas fa-times close-icon" style="display: none;"></i>
+            </button>
+            <style>
+              .green-glass-btn {
+                padding: 10px 16px;
+                margin-top: -10px;
+                background: linear-gradient(135deg, rgba(0, 255, 128, 0.25) 0%, rgba(0, 255, 128, 0.15) 100%);
+                border: none;
+                backdrop-filter: blur(8px) saturate(1.5);
+                -webkit-backdrop-filter: blur(8px) saturate(1.5);
+                transition: box-shadow 0.2s, background 0.2s;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                border-radius: 8px;
+              }
+
+              .green-glass-btn:hover {
+                background: linear-gradient(135deg, rgba(0, 255, 128, 0.35) 0%, rgba(0, 255, 128, 0.22) 100%);
+              }
+
+              .green-glass-btn .menu-line {
+                display: block;
+                width: 32px;
+                height: 5px;
+                background: linear-gradient(90deg, #00ff80 0%, #00e6a0 100%);
+                margin: 0;
+                transition: background 0.2s;
+                border-radius: 2px;
+              }
+            </style>
+          </div>
+        </div>
+      </div>
+
+      <!-- Windows Container -->
+      <div class="windows-container">
+        <!-- About Window -->
+        <div class="window" id="about-window">
+          <div class="window-header">
+            <div class="window-buttons">
+              <span class="btn close"></span>
+              <span class="btn minimize"></span>
+              <span class="btn maximize"></span>
+            </div>
+            <div class="window-title">
+              <i class="fab fa-discord"></i>
+              about - Web/Python/Discord Developer
+            </div>
+            
+          </div>
+          <div class="about-content">
+            <div class="about-profile-picture">
+              <img src="https://yt3.googleusercontent.com/5OgjgXxlc0vyPShDSJGD7b3KoeklNpcP-f8ROm_86zGfWEvAU8TNdquVGUiodZFhQENl5tnjyrk=s160-c-k-c0x00ffffff-no-rj" alt="Profile Picture" />
+            </div>
+            <h1 class="about-title">Hello, I'm Ahsan</h1>
+            <p class="about-description">
+              <span class="typing-text" id="typing-text"></span><span class="about-cursor">|</span>
+            </p>
+            <button class="contact-me-button" onclick="openContactWindow()">CONTACT ME</button>
+          </div>
+        </div>
+        <!-- Skills Window -->
+        <div class="window" id="skills-window">
+          <div class="window-header">
+            <div class="window-buttons">
+              <span class="btn close"></span>
+              <span class="btn minimize"></span>
+              <span class="btn maximize"></span>
+            </div>
+            <div class="window-title">
+              <i class="fas fa-code"></i>
+              skills - Technical Skills
+            </div>
+          </div>
+          <div class="window-content skills-content">
+            <div class="skills-heading">
+              <p class="features-text">FEATURES</p>
+              <h2 class="what-i-do-title">What I Do</h2>
+            </div>
+            <div class="services-container">
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="Images/dc_icon.webp" alt="Discord Server Development"
+                    style="width: 95px; height: 95px; object-fit: contain;">
+                </div>
+                <h3>Discord Server Development</h3>
+                <p>
+                  With over six years of experience and 900+ successful projects, we build and manage all types of
+                  Discord servers — from simple community hubs to advanced automated setups.
+                  Our work covers everything from custom server design and admin support to advanced security systems
+                  like Anti-Raid, Auto-Moderation, and Anti-Nuke protections.
+                  We focus on creating safe, structured, and engaging communities where members can thrive.
+                </p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="Images/py_icon.webp" alt="Python Development"
+                    style="width: 95px; height: 95px; object-fit: contain;">
+                </div>
+                <h3>Python Development</h3>
+                <p>
+                  We build efficient, scalable, and reliable Python-based solutions tailored to real-world needs. Our
+                  expertise covers everything from automation tools and custom scripts to web integrations and backend
+                  systems that power smooth, consistent performance.
+                  We focus on writing clean, maintainable code that’s easy to scale and adapt as your needs grow.
+                  Whether it’s streamlining workflows, connecting platforms, or building tools from scratch, our Python
+                  development approach centers on practicality, performance, and long-term value.
+                </p>
+                </section>
+
+              </div>
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="Images/web_icon.webp" alt="Web Development"
+                    style="width: 95px; height: 95px; object-fit: contain;">
+                </div>
+                <h3>Web Development</h3>
+                <p>
+                  We design and develop fast, responsive, and user-friendly websites built for performance and purpose.
+                  Whether it’s a sleek portfolio, a dynamic dashboard, or a full-featured web app, we focus on clean
+                  design, solid code, and seamless user experiences.
+                  Our development process blends functionality with simplicity — ensuring every site not only looks
+                  great but works flawlessly across all devices. From front-end interfaces to backend integrations, we
+                  build web solutions that help your brand stand out and scale confidently.
+                </p>
+              </div>
+            </div>
+
+
+            <!-- New Skills Section: Our Skills -->
+            <div class="skills-overview">
+              <p class="experience-text">6+ YEARS OF EXPERIENCE</p>
+              <h2 class="our-skills-title">Discord Server Skills</h2>
+            </div>
+
+            <div class="skill-categories-container">
+              <div class="skill-category-column">
+                <h3 class="category-title">Discord Servers</h3>
+                <ul class="skill-list">
+                  <li class="skill-item">
+                    <span class="skill-name">PROFESSIONAL DISCORD SERVER</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+
+                  <li class="skill-item">
+                    <span class="skill-name">Server Maintenance</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Roles, Members & Bots Permissions</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Roles, Channels, Categories</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Verification / Captcha / Token Gated</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Web3 Integration</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Automatic Payment Subscription System</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Privacy & Safety</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+
+                </ul>
+              </div>
+              <div class="skill-category-column">
+                <h3 class="category-title">Discord Security</h3>
+                <ul class="skill-list">
+                  <li class="skill-item">
+                    <span class="skill-name">Two-factor authentication (2FA)</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+
+                  <li class="skill-item">
+                    <span class="skill-name">Server Audit Logs</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Advanced Server Secuirty</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Anti-Raid & Anti-Nuke System</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Highest-Level Auto-Moderation</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Discord Bots Setup</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Fix Incorrect Permissions</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Security Audits</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                  <li class="skill-item">
+                    <span class="skill-name">Industry Standards</span>
+                    <div class="skill-progress-bar">
+                      <div class="skill-fill"></div>
+                    </div>
+                    <span class="skill-percentage">100%</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects Window -->
+        <div class="window" id="projects-window">
+          <div class="window-header">
+            <div class="window-buttons">
+              <span class="btn close"></span>
+              <span class="btn minimize"></span>
+              <span class="btn maximize"></span>
+            </div>
+            <div class="window-title">
+              <i class="fas fa-folder-open"></i>
+              projects - My Projects
+            </div>
+          </div>
+          <div class="window-content projects-content">
+            <div class="projects-overview">
+              <p class="portfolio-text">PORTFOLIO</p>
+              <h2 class="my-awesome-projects-title">My Awesome Projects</h2>
+            </div>
+
+            <!-- Projects Pagination -->
+            <div class="pagination-container" id="projects-pagination">
+              <div class="pagination-info">
+                <span id="projects-page-info">Page 1 of 1</span>
+              </div>
+              <div class="pagination-controls">
+                <button class="pagination-btn prev-btn" id="projects-prev-btn" disabled>
+                  <i class="fas fa-chevron-left"></i>
+                  Previous
+                </button>
+                <div class="pagination-numbers" id="projects-pagination-numbers">
+                  <!-- Page numbers will be dynamically generated -->
+                </div>
+                <button class="pagination-btn next-btn" id="projects-next-btn" disabled>
+                  Next
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+              <!-- Project cards will be dynamically loaded here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Clients & Reviews Window -->
+        <div class="window" id="clients-window">
+          <div class="window-header">
+            <div class="window-buttons">
+              <span class="btn close"></span>
+              <span class="btn minimize"></span>
+              <span class="btn maximize"></span>
+            </div>
+            <div class="window-title">
+              <i class="fas fa-users"></i>
+              clients - Our Clients & Reviews
+            </div>
+          </div>
+          <div class="window-content clients-content">
+            <!-- Clients Section -->
+            <div class="clients-overview">
+              <p class="popular-clients-text">POPULAR CLIENTS</p>
+              <h2 class="awesome-clients-title">Awesome Clients</h2>
+            </div>
+            <div class="clients-main-content">
+              <div class="client-categories">
+                <div class="client-category-tab active" data-category="all">
+                  All
+                </div>
+                <div class="client-category-tab" data-category="community-servers">
+                  Community Servers
+                </div>
+                <div class="client-category-tab" data-category="gaming-streaming">
+                  Gaming / Streaming
+                </div>
+                <div class="client-category-tab" data-category="nft-servers">
+                  NFT Servers
+                </div>
+                <div class="client-category-tab" data-category="crypto-trading">
+                  Crypto Trading
+                </div>
+                <div class="client-category-tab" data-category="forex-stocks-options">
+                  Forex / Stocks / Options
+                </div>
+                <div class="client-category-tab" data-category="education-services">
+                  Education / Services
+                </div>
+              </div>
+
+              <div class="clients-grid-container">
+                <div class="clients-grid" id="clients-grid">
+                  <!-- Client logos will be dynamically loaded here -->
+                </div>
+
+                <!-- Clients Pagination -->
+                <div class="pagination-container grid-pagination" id="clients-pagination">
+                  <div class="pagination-info">
+                    <span id="clients-page-info">Page 1 of 1</span>
+                  </div>
+                  <div class="pagination-controls">
+                    <button class="pagination-btn prev-btn" id="clients-prev-btn" disabled>
+                      <i class="fas fa-chevron-left"></i>
+                      Previous
+                    </button>
+                    <div class="pagination-numbers" id="clients-pagination-numbers">
+                      <!-- Page numbers will be dynamically generated -->
+                    </div>
+                    <button class="pagination-btn next-btn" id="clients-next-btn" disabled>
+                      Next
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="reviews-overview" style="margin-top: 80px;">
+              <h2 class="client-reviews-title">What Clients Say</h2>
+            </div>
+
+            <div class="reviews-grid-container">
+              <div class="reviews-grid" id="reviews-grid">
+                <!-- Review cards will be dynamically loaded here -->
+              </div>
+
+              <!-- Reviews Pagination -->
+              <div class="pagination-container grid-pagination" id="reviews-pagination">
+                <div class="pagination-info">
+                  <span id="reviews-page-info">Page 1 of 1</span>
+                </div>
+                <div class="pagination-controls">
+                  <button class="pagination-btn prev-btn" id="reviews-prev-btn" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                    Previous
+                  </button>
+                  <div class="pagination-numbers" id="reviews-pagination-numbers">
+                    <!-- Page numbers will be dynamically generated -->
+                  </div>
+                  <button class="pagination-btn next-btn" id="reviews-next-btn" disabled>
+                    Next
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reviews window removed - now part of clients window -->
+
+        <!-- Pricing Window -->
+        <div class="window" id="pricing-window">
+          <div class="window-header">
+            <div class="window-buttons">
+              <span class="btn close"></span>
+              <span class="btn minimize"></span>
+              <span class="btn maximize"></span>
+            </div>
+            <div class="window-title">
+              <i class="fas fa-dollar-sign"></i>
+              pricing - Service Pricing
+            </div>
+          </div>
+          <div class="window-content pricing-content">
+            <!-- Top Plan Selector for Mobile -->
+            <div class="pricing-top-selector">
+              <div class="pricing-header-mobile">
+                <p class="pricing-label">PRICING</p>
+                <h1 class="pricing-main-title">Our Pricing</h1>
+              </div>
+              <div class="pricing-buttons-top">
+                <!-- Pricing buttons will be dynamically loaded from data.js -->
+              </div>
+            </div>
+
+            <div class="pricing-container">
+              <div class="pricing-left">
+                <div class="pricing-header">
+                  <p class="pricing-label">PRICING</p>
+                  <h1 class="pricing-main-title">Our Pricing</h1>
+                </div>
+                <div class="pricing-tabs">
+                  <!-- Pricing tabs will be dynamically loaded from data.js -->
+                </div>
+              </div>
+              <div class="pricing-right">
+                <!-- Pricing plans will be dynamically loaded from data.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Window -->
+        <div class="window" id="blog-window">
+          <div class="window-header">
+            <div class="window-buttons">
+              <span class="btn close"></span>
+              <span class="btn minimize"></span>
+              <span class="btn maximize"></span>
+            </div>
+            <div class="window-title">
+              <i class="fas fa-blog"></i>
+              blog - Latest Articles
+            </div>
+          </div>
+          <div class="window-content blog-content">
+            <div class="blog-header">
+              <p class="blog-label">BLOG</p>
+              <h1 class="blog-main-title">Latest Articles</h1>
+              <p class="blog-description">
+                Stay updated with the latest Discord development tips,
+                tutorials, and industry insights
+              </p>
+            </div>
+
+            <!-- Blog Pagination -->
+            <div class="pagination-container" id="blog-pagination">
+              <div class="pagination-info">
+                <span id="blog-page-info">Page 1 of 1</span>
+              </div>
+              <div class="pagination-controls">
+                <button class="pagination-btn prev-btn" id="blog-prev-btn" disabled>
+                  <i class="fas fa-chevron-left"></i>
+                  Previous
+                </button>
+                <div class="pagination-numbers" id="blog-pagination-numbers">
+                  <!-- Page numbers will be dynamically generated -->
+                </div>
+                <button class="pagination-btn next-btn" id="blog-next-btn" disabled>
+                  Next
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="blog-grid" id="blog-grid">
+              <!-- Blog cards will be dynamically loaded here from data.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Window -->
+        <div class="window" id="contact-window">
+          <div class="window-header">
+            <div class="window-buttons">
+              <span class="btn close"></span>
+              <span class="btn minimize"></span>
+              <span class="btn maximize"></span>
+            </div>
+            <div class="window-title">
+              <i class="fas fa-envelope"></i>
+              contact - Get In Touch
+            </div>
+          </div>
+          <div class="window-content contact-content">
+            <!-- 3D Earth Sphere -->
+            <div class="earth-sphere-container">
+              <div class="earth-sphere">
+                <div class="earth-face"></div>
+                <div class="earth-atmosphere"></div>
+              </div>
+            </div>
+
+            <!-- Floating Particles -->
+            <div class="floating-particles" id="contact-particles"></div>
+
+            <!-- Snow Animation -->
+            <div class="snow-container">
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+              <div class="snowflake"></div>
+            </div>
+
+            <!-- Floating Python Logo -->
+            <div class="python-logo-container">
+              <div class="python-logo">
+                <i class="fab fa-python"></i>
+              </div>
+            </div>
+
+            <div class="contact-header">
+              <p class="contact-label">CONTACT</p>
+              <h1 class="contact-main-title">Contact With Me</h1>
+            </div>
+            <div class="contact-sections-wrapper"
+              style="display: flex; justify-content: center; align-items: flex-start; gap: 60px; flex-wrap: wrap;">
+              <div class="contact-left-section"
+                style="flex: 1 1 320px; max-width: 400px; min-width: 260px; display: flex; flex-direction: column; align-items: center;">
+                <div class="contact-card contact-card-styled">
+                  <div class="contact-card-img"
+                    style="display: flex; justify-content: center; margin-bottom: 12px; width: 100%;">
+                    <img src="Images/support.webp" alt="Ahsan"
+                      style="width: 200px; height: 150px; object-fit: contain; border-radius: 10px;">
+                  </div>
+                  <div
+                    style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 4px;">
+                    <h2 class="contact-card-name">Ahsan</h2>
+                    <span class="contact-card-title">Professional Discord
+                      Developer</span>
+                  </div>
+                  <div class="contact-card-description">
+                    I'm a Professional Discord developer with over 5 years of experience and a track record of creating
+                    over 900 servers. Whether you need a custom server setup or have questions, don't hesitate to
+                    contact me.
+                  </div>
+                  <div style="margin-bottom: 8px; width: 100%; display: flex; justify-content: center; gap: 6px;">
+                    <span class="contact-card-label">Discord:</span>
+                    <span class="contact-card-value">theahsan.com</span>
+                  </div>
+                  <br>
+                  <div style="margin-bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 6px;">
+                    <span class="contact-card-label">Server:</span>
+                    <a href="https://discord.gg/R9UpynNDPT" target="_blank"
+                      class="contact-card-link">https://discord.gg/R9UpynNDPT</a>
+                  </div>
+                  <div style="margin-bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 6px;">
+                    <span class="contact-card-label">All Links:</span>
+                    <a href="https://linktr.ee/theahsan" target="_blank"
+                      class="contact-card-link">https://linktr.ee/theahsan</a>
+                  </div>
+                  <div class="contact-card-label contact-me-text">Contact me:</div>
+                  <div class="contact-socials" style="display: flex; gap: 18px; justify-content: center; width: 100%;">
+                    <a href="/cdn-cgi/l/email-protection#95fae2fbf0e7d5e1fdf0f4fde6f4fbbbf6faf8" title="Email" class="contact-social-icon email-icon">
+                      <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://discord.gg/R9UpynNDPT" target="_blank" title="Discord"
+                      class="contact-social-icon discord-icon">
+                      <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://instagram.com/theahsancom" target="_blank" title="Instagram"
+                      class="contact-social-icon instagram-icon">
+                      <i class="fab fa-instagram"></i>
+
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-right-section"
+                style="flex: 1 1 320px; max-width: 500px; min-width: 260px; display: flex; justify-content: center; align-items: flex-start; width: 100%;">
+                <div class="contact-form" style="width: 100%; max-width: 500px;">
+                  <form style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                    <div class="form-group"
+                      style="width: 100%; display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px;">
+                      <label for="contact-username" style="margin-bottom: 4px;">User Name</label>
+                      <input id="contact-username" type="text" placeholder="Enter your name" style="width: 100%;" />
+                    </div>
+                    <div class="form-group"
+                      style="width: 100%; display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px;">
+                      <label for="contact-email" style="margin-bottom: 4px;">Email</label>
+                      <input id="contact-email" type="email" placeholder="Enter your email" style="width: 100%;" />
+                    </div>
+                    <div class="form-group"
+                      style="width: 100%; display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px;">
+                      <label for="contact-subject" style="margin-bottom: 4px;">Subject</label>
+                      <input id="contact-subject" type="text" placeholder="Enter subject" style="width: 100%;" />
+                    </div>
+                    <div class="form-group"
+                      style="width: 100%; display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px;">
+                      <label for="contact-message" style="margin-bottom: 4px;">Message</label>
+                      <textarea id="contact-message" placeholder="Type your message"
+                        style="width: 100%; min-height: 100px;"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn submit-btn-align-right"
+                      style="width: 340px; margin: 10px auto 0 auto; display: block;">
+                      Send Message
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Policy Buttons Section -->
+            <div class="policy-buttons-section"
+              style="margin-top: 20px; padding: 20px; border-top: 1px solid #333; text-align: center;">
+              <h3 class="legal-info-title" style="margin-bottom: 20px; font-size: 1.2em;">Legal Information</h3>
+              <div class="policy-buttons" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button class="policy-btn" onclick="openPolicyModal('privacy')"
+                  style="background: linear-gradient(45deg, #4CAF50, #45a049); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                  <i class="fas fa-shield-alt"></i>
+                  Privacy Policy
+                </button>
+                <button class="policy-btn" onclick="openPolicyModal('terms')"
+                  style="background: linear-gradient(45deg, #2196F3, #1976D2); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                  <i class="fas fa-file-contract"></i>
+                  Terms & Conditions
+                </button>
+                <button class="policy-btn" onclick="openPolicyModal('refund')"
+                  style="background: linear-gradient(45deg, #FF9800, #F57C00); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                  <i class="fas fa-money-bill-wave"></i>
+                  Refund Policy
+                </button>
+              </div>
+            </div>
+
+            <style>
+              @media (max-width: 900px) {
+                .contact-sections-wrapper {
+                  flex-direction: column;
+                  align-items: center !important;
+                  gap: 40px;
+                }
+
+                .contact-left-section,
+                .contact-right-section {
+                  max-width: 100% !important;
+                  min-width: 0 !important;
+                }
+
+                .contact-form {
+                  max-width: 100% !important;
+                }
+              }
+
+              @media (max-width: 700px) {
+                .contact-sections-wrapper {
+                  flex-direction: column;
+                  align-items: center !important;
+                  gap: 30px;
+                }
+
+                .contact-left-section,
+                .contact-right-section {
+                  max-width: 100% !important;
+                  min-width: 0 !important;
+                }
+
+                .contact-form {
+                  max-width: 100% !important;
+                }
+              }
+
+              /* Policy Buttons Styles */
+              .policy-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+              }
+
+              .policy-btn:active {
+                transform: translateY(0);
+              }
+
+              /* Legal Information title styles */
+              .legal-info-title {
+                color: #e0e0e0;
+              }
+
+              /* Light theme adjustments */
+              body.light-theme .policy-buttons-section {
+                border-top-color: #ddd;
+              }
+
+              body.light-theme .legal-info-title {
+                color: #333;
+              }
+
+              /* Contact Card Styles */
+              .contact-card-styled {
+                background: #23232e;
+                border-radius: 18px;
+                box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.18);
+                padding: 20px 18px;
+                color: #fff;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
+
+              .contact-card-name {
+                color: #ff2d2d;
+                font-weight: 700;
+                margin: 0;
+                text-align: center;
+              }
+
+              .contact-card-title {
+                color: #b0b0b0;
+                font-size: 1em;
+                text-align: center;
+              }
+
+              .contact-card-description {
+                color: #00ddff;
+                font-size: 1em;
+                margin-bottom: 12px;
+                line-height: 1.5;
+                text-align: center;
+              }
+
+              .contact-card-label {
+                color: #b0b0b0;
+              }
+
+              .contact-card-value {
+                color: #fff;
+              }
+
+              .contact-card-link {
+                color: #8be9fd;
+                text-decoration: underline;
+                word-break: break-all;
+              }
+
+              .contact-me-text {
+                margin-bottom: 8px;
+                width: 100%;
+                text-align: center;
+              }
+
+              .contact-social-icon {
+                background: #23232e;
+                border-radius: 8px;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.3em;
+                box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.10);
+                transition: background 0.2s;
+                text-decoration: none;
+              }
+
+              .email-icon {
+                color: #fff;
+              }
+
+              .discord-icon {
+                color: #7289da;
+              }
+
+              .instagram-icon {
+                color: #e1306c;
+              }
+
+              /* Light theme contact card styles */
+              body.light-theme .contact-card-styled {
+                background: #fff;
+                box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.1);
+                color: #333;
+              }
+
+              body.light-theme .contact-card-name {
+                color: #d32f2f;
+              }
+
+              body.light-theme .contact-card-title {
+                color: #666;
+              }
+
+              body.light-theme .contact-card-description {
+                color: #1976d2;
+              }
+
+              body.light-theme .contact-card-label {
+                color: #666;
+              }
+
+              body.light-theme .contact-card-value {
+                color: #333;
+              }
+
+              body.light-theme .contact-card-link {
+                color: #1976d2;
+              }
+
+              body.light-theme .contact-social-icon {
+                background: #f5f5f5;
+                box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+              }
+
+              body.light-theme .email-icon {
+                color: #333;
+              }
+
+              body.light-theme .discord-icon {
+                color: #7289da;
+              }
+
+              body.light-theme .instagram-icon {
+                color: #e1306c;
+              }
+
+              /* Empty Blog Message Styles */
+              .empty-blog-message {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 60px 20px;
+                color: #b0b0b0;
+                min-height: 300px;
+              }
+
+              .empty-icon {
+                font-size: 4em;
+                margin-bottom: 20px;
+                opacity: 0.5;
+              }
+
+              .empty-blog-message h3 {
+                color: #e0e0e0;
+                margin-bottom: 15px;
+                font-size: 1.5em;
+                font-weight: 600;
+              }
+
+              .empty-blog-message p {
+                color: #888;
+                font-size: 1.1em;
+                line-height: 1.6;
+                max-width: 500px;
+              }
+
+              /* Light theme empty message styles */
+              body.light-theme .empty-blog-message {
+                color: #666;
+              }
+
+              body.light-theme .empty-blog-message h3 {
+                color: #333;
+              }
+
+              body.light-theme .empty-blog-message p {
+                color: #666;
+              }
+
+              /* Mobile responsive */
+              @media (max-width: 600px) {
+                .policy-buttons {
+                  flex-direction: column;
+                  align-items: center;
+                }
+
+                .policy-btn {
+                  width: 200px;
+                  justify-content: center;
+                }
+              }
+            </style>
+
+
+
+            <!-- Terminal Modal will be created dynamically by JavaScript -->
+
+            <!-- Mobile Menu Modal -->
+            <div id="mobile-menu-modal" class="modal">
+              <div class="mobile-menu-container">
+                <div class="mobile-menu-header">
+                  <h3><i class="fas fa-bars"></i> Menu</h3>
+                  <button class="close-btn" onclick="closeMobileMenu()">&times;</button>
+                </div>
+                <div class="mobile-menu-content">
+                  <div class="mobile-menu-item" onclick="openTerminal(); closeMobileMenu();">
+                    <i class="fas fa-terminal"></i>
+                    <span>Terminal</span>
+                  </div>
+                  <div class="mobile-menu-item" onclick="toggleTheme(); closeMobileMenu();">
+                    <i class="fas fa-moon" id="mobile-menu-theme-icon"></i>
+                    <span>Toggle Theme</span>
+                  </div>
+                  <div class="mobile-menu-item" onclick="openWallpaperModal(); closeMobileMenu();">
+                    <i class="fas fa-image"></i>
+                    <span>Change Wallpaper</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wallpaper Modal will be created dynamically by JavaScript -->
+
+            <!-- Gallery Modal -->
+            <div id="gallery-modal" class="modal" style="display: none">
+              <div class="gallery-container">
+                <div class="gallery-header">
+                  <h3><i class="fas fa-images"></i> Gallery</h3>
+                  <button class="close-btn" onclick="closeGallery()">&times;</button>
+                </div>
+                <div class="gallery-grid">
+                  <!-- Gallery items will be loaded here -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Language Modal -->
+            <div id="language-modal" class="modal" style="display: none">
+              <div class="language-container">
+                <div class="language-header">
+                  <h3><i class="fas fa-code"></i> Select Language</h3>
+                  <button class="close-btn" onclick="closeLanguageModal()">
+                    &times;
+                  </button>
+                </div>
+                <div class="language-options">
+                  <button onclick="changeLanguage('javascript')">JavaScript</button>
+                  <button onclick="changeLanguage('python')">Python</button>
+                  <button onclick="changeLanguage('java')">Java</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Image Viewer Modal -->
+            <div id="image-viewer" class="modal" style="display: none">
+              <div class="image-viewer-container">
+                <button class="close-btn" onclick="closeImageViewer()">&times;</button>
+                <img id="viewer-image" src="" alt="Viewer Image" />
+                <button class="nav-btn prev-btn" onclick="previousImage()">
+                  &#8249;
+                </button>
+                <button class="nav-btn next-btn" onclick="nextImage()">&#8250;</button>
+              </div>
+            </div>
+
+            <!-- Policy Modal -->
+            <div id="policy-modal" class="modal" style="display: none">
+              <div class="policy-container">
+                <div class="policy-header">
+                  <h3 id="policy-title"><i class="fas fa-file-alt"></i> Policy</h3>
+                  <button class="close-btn" onclick="closePolicyModal()">
+                    &times;
+                  </button>
+                </div>
+                <div class="policy-content" id="policy-content">
+                  <!-- Policy content will be loaded here -->
+                </div>
+              </div>
+            </div>
+
+            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="data.js"></script>
+            <script src="blog-data.js"></script>
+            <script src="script.js"></script>
+            <script src="mobile-pricing-fix.js"></script>
+</body>
+
+</html>
